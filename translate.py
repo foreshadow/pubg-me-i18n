@@ -25,6 +25,7 @@ class TranslateMap:
             self.map[key] = key
 
     def tr(self, key):
+        key = key.strip()
         if self._filter(key):
             self._add(key)
             return self.map[key]
