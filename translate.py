@@ -41,6 +41,7 @@ class TranslateMap:
         f.close()
 
 lang = 'zh-CN'
+subdir = '/pubg-me-zh-CN'
 
 tm = TranslateMap('{}.json'.format(lang))
 
@@ -57,7 +58,10 @@ def translate(html):
     s.find('form').decompose()
     s.find(attrs={'class': 'btn-signin'}).parent.parent.decompose()
     s.find(attrs={'id': 'footer'}).decompose()
-    s.head.append(s.new_tag('link', href="style.css", rel="stylesheet"))
+    s.head.append(s.new_tag('link', href="/{}/style.css".format(subdir), rel="stylesheet"))
+    for item in s.find_all('a'):
+        if item.href:
+            item.href = subdir + item.href
     for item in s.find_all('div'):
         if item.string:
             item.string = tm.tr(item.string)
