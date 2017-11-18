@@ -41,7 +41,8 @@ class TranslateMap:
         f.close()
 
 lang = 'zh-CN'
-subdir = '/pubg-me-zh-CN/{}'.format(lang)
+subdir = '/pubg-me-zh-CN'
+link_prefix = '/{}/{}'.format(subdir, lang)
 
 tm = TranslateMap('{}.json'.format(lang))
 
@@ -60,11 +61,11 @@ def translate(html):
     s.find(attrs={'id': 'footer'}).decompose()
     s.head.append(s.new_tag('link', href="{}/style.css".format(subdir), rel="stylesheet"))
     s.body.append(s.new_tag('script', src='https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js'))
-    s.body.append(s.new_tag('script', src='https://cdn.bootcss.com/popper.js/1.12.9/popper.min.js'))
+    s.body.append(s.new_tag('script', src='https://cdn.bootcss.com/popper.js/1.12.9/umd/popper.min.js'))
     s.body.append(s.new_tag('script', src='https://cdn.bootcss.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js'))
     for item in s.find_all('a'):
         if item['href'] and item['href'][0] == '/':
-            item['href'] = subdir + item['href']
+            item['href'] = link_prefix + item['href']
 
     for item in s.find_all('div'):
         if item.string:
