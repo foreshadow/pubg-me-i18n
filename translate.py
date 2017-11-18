@@ -92,6 +92,11 @@ for type in ['items', 'weapons']:
     file = 'docs/{}/{}/index.html'.format(lang, type)
     crawl(url, file)
 
+for item in ['equipment', 'attachments', 'consumables', 'ammo']:
+    url = '{}/items/{}'.format(host, item)
+    file = 'docs/{}/items/{}.html'.format(lang, item)
+    crawl(url, file)
+
 for weapon in ['sniper-rifles', 'assault-rifles', 'submachine-guns', 'shotguns',
                'pistols', 'misc', 'melee', 'throwables']:
     url = '{}/weapons/{}'.format(host, weapon)
