@@ -60,6 +60,7 @@ def translate(html):
     s.find(attrs={'id': 'footer'}).decompose()
     s.head.append(s.new_tag('link', href="{}/style.css".format(subdir), rel="stylesheet"))
     s.body.append(s.new_tag('script', src='https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js'))
+    s.body.append(s.new_tag('script', src='https://cdn.bootcss.com/popper.js/1.12.9/popper.min.js'))
     s.body.append(s.new_tag('script', src='https://cdn.bootcss.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js'))
     for item in s.find_all('a'):
         if item['href'] and item['href'][0] == '/':
@@ -85,10 +86,16 @@ def crawl(url, file):
     html = translate(response.read())
     open(file, 'w', encoding='u8').write(html)
 
+host = 'https://pubg.me'
+
+for type in ['items', 'weapons']:
+    url = '{}/{}'.format(host, type)
+    file = 'docs/{}/{}/index.html'.format(lang, type)
+    crawl(url, file)
 
 for weapon in ['sniper-rifles', 'assault-rifles', 'submachine-guns', 'shotguns',
                'pistols', 'misc', 'melee', 'throwables']:
-    url = 'https://pubg.me/weapons/{}'.format(weapon)
+    url = '{}/weapons/{}'.format(host, weapon)
     file = 'docs/{}/weapons/{}.html'.format(lang, weapon)
     crawl(url, file)
 
