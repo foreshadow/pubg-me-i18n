@@ -60,8 +60,8 @@ def translate(html):
     s.find(attrs={'id': 'footer'}).decompose()
     s.head.append(s.new_tag('link', href="/{}/style.css".format(subdir), rel="stylesheet"))
     for item in s.find_all('a'):
-        if item.href:
-            item.href = subdir + item.href
+        if item['href'] and item['href'][0] == '/':
+            item['href'] = subdir + item['href']
     for item in s.find_all('div'):
         if item.string:
             item.string = tm.tr(item.string)
