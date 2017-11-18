@@ -18,7 +18,7 @@ class TranslateMap:
         self.map = loads(json)
 
     def _filter(self, key):
-        return match('[A-Za-z]', key)
+        return match('[A-Za-z]', key) or match('.*[^A-Za-z]s$', key)
 
     def _add(self, key):
         if not key in self.map:
