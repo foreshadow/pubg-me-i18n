@@ -68,12 +68,10 @@ def translate(html):
         if item['href'] and item['href'][0] == '/':
             item['href'] = link_prefix + item['href']
 
-    for item in s.find_all('div'):
-        if item.string:
-            item.string = tm.tr(item.string)
-    for item in s.find_all('p'):
-        if item.string:
-            item.string = tm.tr(item.string)
+    for tag in ['h5', 'span', 'th', 'td', 'div', 'p']:
+        for item in s.find_all(tag):
+            if item.string:
+                item.string = tm.tr(item.string)
     for item in s.find_all(attrs={'class': 'label'}):
         if item.string:
             item.string = tm.tr(item.string)
