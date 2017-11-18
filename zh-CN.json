@@ -208,7 +208,7 @@
   "Hit Range Leeway": "命中距离补偿",
   "Holographic Sight": "全息瞄准镜",
   "Hor. Speed": "水平速度",
-  "Hor. Tendency": "水平Tendency",
+  "Hor. Tendency": "水平倾向",
   "Impact": "冲击力",
   "Impact or Delay": "受撞击爆炸 否则 延迟",
   "Increases magazine capacity": "增加弹夹容量",
@@ -388,6 +388,5 @@
   "垂直Clamp": "垂直Clamp",
   "垂直Recovery Clamp": "垂直Recovery Clamp",
   "垂直Recovery Max": "垂直Recovery Max",
-  "基础(ADS)": "基础(ADS)",
-  "水平Tendency": "水平Tendency"
+  "基础(ADS)": "基础(ADS)"
 }
