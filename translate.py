@@ -18,7 +18,7 @@ class TranslateMap:
         self.map = loads(json)
 
     def _filter(self, key):
-        return match('[A-Za-z]', key) or match('.*[^A-Za-z]s$', key)
+        return match('.*[A-Za-z].*', key)
 
     def _add(self, key):
         if not key in self.map:
@@ -42,7 +42,7 @@ class TranslateMap:
         f.close()
 
 lang = 'zh-CN'
-subdir = '/pubg-me-zh-CN'
+subdir = '/pubg-me-i18n'
 link_prefix = '{}/{}'.format(subdir, lang)
 
 tm = TranslateMap('{}.json'.format(lang))
