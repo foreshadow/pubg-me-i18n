@@ -41,7 +41,7 @@ class TranslateMap:
         f.close()
 
 lang = 'zh-CN'
-subdir = '/pubg-me-zh-CN'
+subdir = '/pubg-me-zh-CN/{}'.format(lang)
 
 tm = TranslateMap('{}.json'.format(lang))
 
@@ -79,9 +79,7 @@ def translate(html):
 
 def crawl(url, file):
     print(url)
-    request = Request(url, headers={
-        'User-Agent': 'Infinity'
-    })
+    request = Request(url, headers={'User-Agent': 'Infinity'})
     response = urlopen(request)
     html = translate(response.read())
     open(file, 'w', encoding='u8').write(html)
