@@ -69,15 +69,20 @@ def translate(html):
             item.string = tm.tr(item.string)
     return s.prettify()
 
-for weapon in ['sniper-rifles', 'assault-rifles', 'submachine-guns', 'shotguns',
-               'pistols', 'misc', 'melee', 'throwables']:
-    url = 'https://pubg.me/weapons/{}'.format(weapon)
+def crawl(url, file):
     print(url)
     request = Request(url, headers={
         'User-Agent': 'Infinity'
     })
     response = urlopen(request)
     html = translate(response.read())
-    open('doc/zh-CN/{}.html'.format(weapon), 'w', encoding='u8').write(html)
+    open(file, 'w', encoding='u8').write(html)
+
+
+for weapon in ['sniper-rifles', 'assault-rifles', 'submachine-guns', 'shotguns',
+               'pistols', 'misc', 'melee', 'throwables']:
+    url = 'https://pubg.me/weapons/{}'.format(weapon)
+    file = 'docs/{}/weapons/{}.html'.format(lang, weapon)
+    crawl(url, file)
 
 tm.save()
