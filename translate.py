@@ -37,12 +37,12 @@ class TranslateMap:
 
     def save(self):
         f = open(self.path, 'w', encoding='u8')
-        f.write(dumps(self.map, sort_keys=True, indent='  '))
+        f.write(dumps(self.map, sort_keys=True, indent='  ').encode('latin-1').decode('unicode_escape'))
         f.close()
 
 lang = 'zh-CN'
 subdir = '/pubg-me-zh-CN'
-link_prefix = '/{}/{}'.format(subdir, lang)
+link_prefix = '{}/{}'.format(subdir, lang)
 
 tm = TranslateMap('{}.json'.format(lang))
 
