@@ -59,9 +59,12 @@ def translate(html):
     s.find(attrs={'class': 'btn-signin'}).parent.parent.decompose()
     s.find(attrs={'id': 'footer'}).decompose()
     s.head.append(s.new_tag('link', href="/{}/style.css".format(subdir), rel="stylesheet"))
+    s.body.append(s.new_tag('script', src='https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js'))
+    s.body.append(s.new_tag('script', src='https://cdn.bootcss.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js'))
     for item in s.find_all('a'):
         if item['href'] and item['href'][0] == '/':
             item['href'] = subdir + item['href']
+
     for item in s.find_all('div'):
         if item.string:
             item.string = tm.tr(item.string)
